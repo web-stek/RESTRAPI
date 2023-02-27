@@ -19,13 +19,13 @@
 ## 📚 Table of Contents
 
 1. [About RESTRAPI](#-about-restrapi)
-3. [Authentication/Auth](#-authentication)
-    - [Signup](#-signup)
-    - [Login](#-login)
-    - [Forgot Password](#-forgot-password)
-    - [Logout](#-logout)
+3. [Authentication/Auth](#🔑-authentication)
+    - [Signup](#signup)
+    - [Login](#login)
+    - [Forgot Password](#forgot-password)
+    - [Logout](#logout)
 2. [Mutation](#-mutation)
-    - [UpdateMe](#-UpdateMe)
+    - [UpdateMe](#👤-updateme)
 4. [Contact](#-contact)
 
 # About RESTRAPI
