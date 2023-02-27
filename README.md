@@ -20,10 +20,14 @@
 
 1. [About RESTRAPI](#-about-restrapi)
 2. [UpdateMe](#-UpdateMe)
+3. [Authentication/Auth](#-Authentication)
+    - [Forgot Password](#-forgot-password)
+    - [Me Query](#-me-query)
 4. [Contact](#-contact)
 
 
-## 👤 UpdateMe (like “isOwner”)
+## 👤 UpdateMe
+This code solves the problem that the user can only edit their own fields and not mistakenly other (findOne, find) user data (like "isOwner").
 
 Create a JS file strapi-server.js in the strapi folder /src/extensions/user-permissions.
 
@@ -61,7 +65,7 @@ return plugin;
 };
 ```
 
-## forgot-Password
+## 🔑 forgot-Password
 Create a JS File forgot-password.js in the strapi folder /src/api/user/controllers.
 
 Add the following content to the file:
@@ -118,6 +122,5 @@ yarn add @strapi/utils
 ```
 
 ## 🌐 Contact
-Author : Paco Krummenacher @web-stek
-
+Author : Paco Krummenacher [https://github.com/web-stek/](@web-stek)
 See on Github : [https://github.com/web-stek/](https://github.com/web-stek/)
