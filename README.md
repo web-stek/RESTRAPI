@@ -108,7 +108,16 @@ const handleSubmit = async (e) => {
 ```
 
 ## Logout
-Create a JS File `forgot-password.js` in the strapi folder `/src/api/user/controllers`.
+Create a JSX File like `Signout.jsx` in your app and add the following code to submit a signout-button/link. I daded `navigate` (`react-dom`) to go to a spec. page after removing the JWT-token.
+
+```jsx
+// src/api/controllers/user/Logout.jsx
+
+const handleLogout = () => {
+    localStorage.removeItem("jwt");
+    navigate("/example");
+  };
+  ```
 ## Forgot-Password
 Create a JS File `forgot-password.js` in the strapi folder `/src/api/user/controllers`.
 
