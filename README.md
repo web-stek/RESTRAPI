@@ -26,6 +26,7 @@
     - [Logout](#logout)
 2. [Mutation](#mutation)
     - [UpdateMe](#-updateme)
+    - [Populate](#populate)
 4. [Contact](#-contact)
 
 # About RESTRAPI
@@ -174,7 +175,29 @@ if necessary `strapi/utils` must be installed.
 ```jsx
 yarn add @strapi/utils
 ```
-# Mutation
+# Fetch & Mutation etc.
+
+## 👤FetchMe
+```jsx
+// /src/extensions/user-permissions/FetchUserMe.jsx
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          'http://example.com//api/users/me',
+          { headers }
+        );
+        const user = response.data;
+        const username = user?.username || "";
+        const firstNme = user?. firstName || ""; // new added field "firstName" in Strapi
+        // ...
+        } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUser();
+  }, []);
+```
 ## 👤 UpdateMe
 This code solves the problem that the user can only edit their own fields and not mistakenly other (`findOne`, `find`) user data (similar to "isOwner").
 
@@ -215,6 +238,10 @@ polices: [],
 return plugin;
 };
 ```
+
+## 🧮 Populate
+To get access to for ex. the Me-Role (Strapi User Role of Me) or Me-Media (Strapi Media-field) you can add `..me?populate=role,Media` in the `axios.get('http://example.com//api/users/me'`
+
 ## 🌐 Contact
 * Author : Paco Krummenacher [https://github.com/web-stek/](@web-stek)
 * See on Github : [https://github.com/web-stek/](https://github.com/web-stek/)
