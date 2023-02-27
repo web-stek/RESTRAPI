@@ -3,9 +3,9 @@
   <h3 align="center">RESTRAPI Documentation & Help</h3>
 
   <p align="center">
-    Collections of REST API and mutations that power your Strapi (v4.6.1) app!
+    Collections of REST API and mutations that power your Strapi app!
     <br />
-    <a href="https://github.com/web-stek/RESTRAPI"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/web-stek/RESTRAPI#-table-of-contents"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/web-stek/RESTRAPI/issues">Report Bug</a>
@@ -18,20 +18,20 @@
 <!-- TABLE OF CONTENTS -->
 ## 📚 Table of Contents
 
-1. [About RESTRAPI](#-about-restrapi)
+1. [About RESTRAPI](#about-restrapi)
 3. [Authentication/Auth](#🔑-authentication)
     - [Signup](#signup)
     - [Login](#login)
     - [Forgot Password](#forgot-password)
     - [Logout](#logout)
-2. [Mutation](#-mutation)
+2. [Mutation](#mutation)
     - [UpdateMe](#👤-updateme)
-4. [Contact](#-contact)
+4. [Contact](#🌐-contact)
 
 # About RESTRAPI
 I have created this documentation, because I have hardly found any information myself or there is hardly any information about it in the Strapi documentation. 
-Strapi version: 4.6.1
-JS library: React
+* Strapi version: 4.6.1
+* JS library: React
 
 The name RESTRAPI is formed from the terms: Strapi, REST, API.
 
