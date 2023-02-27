@@ -19,59 +19,104 @@
 ## 📚 Table of Contents
 
 1. [About RESTRAPI](#-about-restrapi)
-2. [UpdateMe](#-UpdateMe)
-3. [Authentication/Auth](#-Authentication)
+3. [Authentication/Auth](#-authentication)
+    - [Signup](#-signup)
+    - [Login](#-login)
     - [Forgot Password](#-forgot-password)
-    - [Me Query](#-me-query)
+    - [Logout](#-logout)
+2. [Mutation](#-mutation)
+    - [UpdateMe](#-UpdateMe)
 4. [Contact](#-contact)
 
+# About RESTRAPI
+I have created this documentation, because I have hardly found any information myself or there is hardly any information about it in the Strapi documentation. 
+Strapi version: 4.6.1
+JS library: React
 
-## 👤 UpdateMe
-This code solves the problem that the user can only edit their own fields and not mistakenly other (findOne, find) user data (like "isOwner").
+The name RESTRAPI is formed from the terms: Strapi, REST, API.
 
-Create a JS file strapi-server.js in the strapi folder /src/extensions/user-permissions.
+# 🔑 Authentication
+## Signup
+Create a JSX File like `Signin.jsx` in your app and add the following code to submit a signin-form (username/identifier and password; example.com is your Strapi-Path +/- port).
+```jsx
+// Signin.jsx
+
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const input = {
+      username: formData.get("username"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+    };
+    if (!validator.isEmail(input.email)) {
+      setAlert(
+        "Invalid email address, please enter a valid email address.",
+        "error"
+      );
+      return;
+    }
+    try {
+      const response = await axios.post(
+        'http://example.com//api/auth/local/register',
+        input
+      );
+      if (response && response.data) {
+        setAlert(
+          "Registration successful. Go to your mailbox and confirm the email address with the link sent.",
+          "success"
+        );
+        setUsername("");
+        setEmail("");
+        setPassword("");
+      } else {
+        setAlert("Registration failed", "error");
+      }
+    } catch (err) {
+      setAlert(`Registration failed: ${err.message}`, "error");
+    }
+  };
+```
+## Login
+Create a JSX File like `Login.jsx` in your app and add the following code to submit a login-form (username/identifier and password; example.com is your Strapi-Path +/- port). The stored JWT-token will be used for accessing "Me".
+```jsx
+// Login.jsx
+
+import axios from "axios";
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const input = {
+      identifier: identifier,
+      password: password,
+    };
+    const response = await axios.post(
+      "http://example.com/api/auth/local",
+      input
+    );
+    // Store JWT token in browser's local storage
+    localStorage.setItem("jwt", response.data.jwt);
+    setAlert("Login Successful, Redirecting...", "success");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  } catch (err) {
+    setAlert("Invalid email or password", "danger");
+  }
+};
+```
+
+## Logout
+Create a JS File `forgot-password.js` in the strapi folder `/src/api/user/controllers`.
+## Forgot-Password
+Create a JS File `forgot-password.js` in the strapi folder `/src/api/user/controllers`.
 
 Add the following content to the file:
 
 ```jsx
-module.exports = (plugin) => {
-plugin.controllers.user.updateMe = async (ctx) => {
-if (!ctx.state.user || ![ctx.state.user.id](http://ctx.state.user.id/)) {
-return (ctx.response.status = 401);
-}
-await strapi
-.query("plugin::users-permissions.user")
-.update({
-where: { id: [ctx.state.user.id](http://ctx.state.user.id/) },
-data: ctx.request.body
-})
-.then((res) => {
-ctx.response.status = 200;
-});
-};
-```
+// src/api/controllers/user/forgot-password.js
 
-```jsx
-plugin.routes["content-api"].routes.push({
-method: "PUT",
-path: "/user/me",
-handler: "user.updateMe",
-config: {
-prefix: "",
-polices: [],
-},
-});
-return plugin;
-};
-```
-
-## 🔑 forgot-Password
-Create a JS File forgot-password.js in the strapi folder /src/api/user/controllers.
-
-Add the following content to the file:
-
-```jsx
-// api/controllers/forgot-password.js
 const { sanitizeEntity } = require("@strapi/utils");
 const { get } = require("lodash");
 
@@ -115,12 +160,52 @@ module.exports = {
   },
 };
 ```
-if necessary strapi/utils must be installed.
+if necessary `strapi/utils` must be installed.
 
 ```jsx
 yarn add @strapi/utils
 ```
+# Mutation
+## 👤 UpdateMe
+This code solves the problem that the user can only edit their own fields and not mistakenly other (`findOne`, `find`) user data (similar to "isOwner").
 
+Create a JS file `strapi-server.js` in the strapi folder `/src/extensions/user-permissions`.
+
+Add the following content to the file:
+
+```jsx
+// /src/extensions/user-permissions/forgot-password.js
+
+module.exports = (plugin) => {
+plugin.controllers.user.updateMe = async (ctx) => {
+if (!ctx.state.user || ![ctx.state.user.id](http://ctx.state.user.id/)) {
+return (ctx.response.status = 401);
+}
+await strapi
+.query("plugin::users-permissions.user")
+.update({
+where: { id: [ctx.state.user.id](http://ctx.state.user.id/) },
+data: ctx.request.body
+})
+.then((res) => {
+ctx.response.status = 200;
+});
+};
+```
+
+```jsx
+plugin.routes["content-api"].routes.push({
+method: "PUT",
+path: "/user/me",
+handler: "user.updateMe",
+config: {
+prefix: "",
+polices: [],
+},
+});
+return plugin;
+};
+```
 ## 🌐 Contact
 Author : Paco Krummenacher [https://github.com/web-stek/](@web-stek)
 See on Github : [https://github.com/web-stek/](https://github.com/web-stek/)
