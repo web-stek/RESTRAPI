@@ -216,5 +216,5 @@ return plugin;
 };
 ```
 ## 🌐 Contact
-Author : Paco Krummenacher [https://github.com/web-stek/](@web-stek)
-See on Github : [https://github.com/web-stek/](https://github.com/web-stek/)
+* Author : Paco Krummenacher [https://github.com/web-stek/](@web-stek)
+* See on Github : [https://github.com/web-stek/](https://github.com/web-stek/)
