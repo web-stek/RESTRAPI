@@ -61,6 +61,62 @@ return plugin;
 };
 ```
 
+## forgot-Password
+Create a JS File forgot-password.js in the strapi folder /src/api/user/controllers.
+
+Add the following content to the file:
+
+```jsx
+// api/controllers/forgot-password.js
+const { sanitizeEntity } = require("@strapi/utils");
+const { get } = require("lodash");
+
+module.exports = {
+  async forgotPassword(ctx) {
+    const { email } = ctx.request.body;
+
+    // Find the user with the given email address
+    const [user] = await strapi.query("user", "users-permissions").find({
+      email,
+    });
+
+    if (!user) {
+      return ctx.throw(404, "User not found.");
+    }
+
+    const token = await strapi.plugins[
+      "users-permissions"
+    ].services.jwt.issueResetPasswordToken(user);
+
+    const siteUrl = get(strapi, "config.server.siteUrl", "http://localhost");
+    const resetUrl = `${siteUrl}/reset-password?code=${token}`;
+
+    try {
+      await strapi.plugins["email"].services.email.send({
+        to: email,
+        subject: "Password reset request",
+        html: `
+          <p>You recently requested to reset your password for your account. Click the button below to reset it.</p>
+          <a href="${resetUrl}" target="_blank" style="display: block; width: 200px; height: 40px; background-color: #3f51b5; color: #fff; text-align: center; line-height: 40px; text-decoration: none; border-radius: 4px; margin: 10px auto;">Reset password</a>
+          <p>If you did not request a password reset, please ignore this email.</p>
+        `,
+      });
+    } catch (err) {
+      ctx.throw(500, "Error sending password reset email.");
+    }
+
+    return sanitizeEntity(user, {
+      model: strapi.query("user", "users-permissions").model,
+    });
+  },
+};
+```
+if necessary strapi/utils must be installed.
+
+```jsx
+yarn add @strapi/utils
+```
+
 ## 🌐 Contact
 Author : Paco Krummenacher @web-stek
 
