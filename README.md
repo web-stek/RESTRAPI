@@ -23,7 +23,7 @@
 4. [Contact](#-contact)
 
 
-## 👤 UpdateMe (lie “isOwner”)
+## 👤 UpdateMe (like “isOwner”)
 
 Erstelle im Strapi-Ordner /src/extensions/user-permissions eine JS-Datei strapi-server.js.
 
