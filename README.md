@@ -24,7 +24,8 @@
     - [Login](#login)
     - [Forgot Password](#forgot-password)
     - [Logout](#logout)
-2. [Mutation](#mutation)
+2. [Me Fetch & Mutation](#me-fetch--mutation)
+    - [FetchMe](#-fetchme)
     - [UpdateMe](#-updateme)
     - [Populate](#populate)
 4. [Contact](#-contact)
@@ -175,7 +176,7 @@ if necessary `strapi/utils` must be installed.
 ```jsx
 yarn add @strapi/utils
 ```
-# Fetch & Mutation etc.
+# Me Fetch & Mutation
 
 ## 👤FetchMe
 ```jsx
