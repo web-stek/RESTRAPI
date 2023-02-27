@@ -3,9 +3,9 @@
   <h3 align="center">RESTRAPI Documentation & Help</h3>
 
   <p align="center">
-    Collections of GraphQL queries and mutations that power your Strapi app!
+    Collections of REST API and mutations that power your Strapi (v4.6.1) app!
     <br />
-    <a href="https://github.com/kevinadhiguna/strapi-graphql-documentation#-table-of-contents"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/web-stek/RESTRAPI"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/web-stek/RESTRAPI/issues">Report Bug</a>
