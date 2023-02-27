@@ -25,9 +25,9 @@
 
 ## 👤 UpdateMe (like “isOwner”)
 
-Erstelle im Strapi-Ordner /src/extensions/user-permissions eine JS-Datei strapi-server.js.
+Create a JS file strapi-server.js in the strapi folder /src/extensions/user-permissions.
 
-Folgender Inhalt in die Datei strapi-server.js einfügen:
+Add the following content to the file:
 
 ```jsx
 module.exports = (plugin) => {
