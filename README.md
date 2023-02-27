@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/web-stek/RESTRAPI/blob/main/reststrapi_logo.png" width="150px" height="150px" />
+  <img src="https://github.com/web-stek/RESTRAPI/blob/main/reststrapi_logo.png" width="250px" height="250px" />
   <h3 align="center">RESTRAPI Documentation & Help</h3>
 
   <p align="center">
