@@ -25,7 +25,7 @@
     - [Forgot Password](#forgot-password)
     - [Logout](#logout)
 2. [Me Fetch & Mutation](#me-fetch--mutation)
-    - [FetchMe](#-fetchme)
+    - [FetchMe](#fetchme)
     - [UpdateMe](#-updateme)
     - [Populate](#populate)
 4. [Contact](#-contact)
