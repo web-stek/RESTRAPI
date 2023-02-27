@@ -224,9 +224,7 @@ data: ctx.request.body
 ctx.response.status = 200;
 });
 };
-```
 
-```jsx
 plugin.routes["content-api"].routes.push({
 method: "PUT",
 path: "/user/me",
