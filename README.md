@@ -19,14 +19,14 @@
 ## 📚 Table of Contents
 
 1. [About RESTRAPI](#about-restrapi)
-3. [Authentication/Auth](#🔑-authentication)
+3. [Authentication/Auth](#-authentication)
     - [Signup](#signup)
     - [Login](#login)
     - [Forgot Password](#forgot-password)
     - [Logout](#logout)
 2. [Mutation](#mutation)
-    - [UpdateMe](#👤-updateme)
-4. [Contact](#🌐-contact)
+    - [UpdateMe](#-updateme)
+4. [Contact](#-contact)
 
 # About RESTRAPI
 I have created this documentation, because I have hardly found any information myself or there is hardly any information about it in the Strapi documentation. 
