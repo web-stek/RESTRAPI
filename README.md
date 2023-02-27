@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/kevinadhiguna/strapi-graphql-documentation/master/assets/images/strapql.png" />
+  <img src="https://github.com/web-stek/RESTRAPI/blob/main/reststrapi_logo.svg" />
   <h3 align="center">RESTRAPI Documentation & Help</h3>
 
   <p align="center">
@@ -8,14 +8,22 @@
     <a href="https://github.com/kevinadhiguna/strapi-graphql-documentation#-table-of-contents"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/kevinadhiguna/strapi-graphql-documentation/issues">Report Bug</a>
+    <a href="https://github.com/web-stek/RESTRAPI/issues">Report Bug</a>
     ·
-    <a href="https://github.com/kevinadhiguna/strapi-graphql-documentation/issues">Request Feature</a>
+    <a href="https://github.com/web-stek/RESTRAPI/pulls">Request Feature</a>
   </p>
 </div>
 <br>
 
-# UpdateMe (lie “isOwner”)
+<!-- TABLE OF CONTENTS -->
+## 📚 Table of Contents
+
+1. [About RESTRAPI](#-about-restrapi)
+2. [UpdateMe](#-UpdateMe)
+4. [Contact](#-contact)
+
+
+## 👤 UpdateMe (lie “isOwner”)
 
 Erstelle im Strapi-Ordner /src/extensions/user-permissions eine JS-Datei strapi-server.js.
 
@@ -52,3 +60,8 @@ polices: [],
 return plugin;
 };
 ```
+
+## 🌐 Contact
+Author : Paco Krummenacher @web-stek
+
+See on Github : [https://github.com/web-stek/](https://github.com/web-stek/)
