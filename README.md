@@ -27,8 +27,8 @@
 2. [GET, POST, PUT & DELETE](#get-post-put-delete-add-update-delete)
     - [FetchMe](#fetchme)
     - [UpdateMe](#-updateme)
-    - [UploadOneImage](#-uploadoneimage)
-    - [Populate](#populate)
+    - [UploadOneImage](#uploadoneimage)
+    - [Populate](#-populate)
 4. [Contact](#-contact)
 
 # About RESTRAPI
