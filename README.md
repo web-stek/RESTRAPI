@@ -24,16 +24,17 @@
     - [Login](#login)
     - [Forgot Password](#forgot-password)
     - [Logout](#logout)
-2. [Me Fetch & Mutation](#me-fetch--mutation)
+2. [GET, POST, PUT & DELETE](#get-post-put-delete-add-update-delete)
     - [FetchMe](#fetchme)
     - [UpdateMe](#-updateme)
+    - [UploadOneImage](#-uploadoneimage)
     - [Populate](#populate)
 4. [Contact](#-contact)
 
 # About RESTRAPI
 I have created this documentation, because I have hardly found any information myself or there is hardly any information about it in the Strapi documentation. 
 * Strapi version: 4.6.1
-* JS library: React
+* JS library: React + Axios
 
 The name RESTRAPI is formed from the terms: Strapi, REST, API.
 
@@ -176,11 +177,15 @@ if necessary `strapi/utils` must be installed.
 ```jsx
 yarn add @strapi/utils
 ```
-# Me Fetch & Mutation
+# GET, POST, PUT, DELETE (add, update, delete)
 
 ## 👤FetchMe
 ```jsx
 // /src/extensions/user-permissions/FetchUserMe.jsx
+  const headers = {
+    Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -236,6 +241,78 @@ polices: [],
 });
 return plugin;
 };
+```
+
+## 🖼️ UploadOneImage
+This code solves the problem that the user can only edit their own fields and not mistakenly other (`findOne`, `find`) user data (similar to "isOwner").
+
+Create a JS file `strapi-server.js` in the strapi folder `/src/extensions/user-permissions`.
+
+Add the following content to the file:
+
+```jsx
+//Image Uploader
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0]; // store the selected file in a variable
+
+    if (selectedFile.size > 1024 * 1024) {
+      // check the size of the selected file
+      setAlert("The image must not be larger than 1 MB.", "danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+      return;
+    }
+
+    setFile(selectedFile); // set the selected file as the state variable
+  };
+
+  const handleUploadAvatar = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("files", file);
+      formData.append("refId", userId);
+      formData.append("ref", "plugin::users-permissions.user");
+      formData.append("field", "Image");
+
+      const config = {
+        method: "post",
+        url: 'http://example.com/api/upload',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+      };
+
+      const response = await axios(config);
+      const fileId = response.data[0].id;
+
+      const updatedUser = await axios.put(
+        'http://example.com/api/user/me',
+        { Avatar: fileId },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+          },
+        }
+      );
+
+      setAlert("Updated user-avatar", "success");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+        window.location.reload(false);
+      }, 5000);
+    } catch (error) {
+      setAlert("Error uploading the image", "danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 5000);
+    }
+  };
 ```
 
 ## 🧮 Populate
