@@ -33,7 +33,7 @@
 
 # About RESTRAPI
 I have created this documentation, because I have hardly found any information myself or there is hardly any information about it in the Strapi documentation. 
-* Strapi version: 4.7.0
+* Strapi version: 4.7.1
 * JS library: React + Axios
 
 The name RESTRAPI is formed from the terms: Strapi, REST, API.
