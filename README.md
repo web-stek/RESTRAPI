@@ -251,68 +251,34 @@ Create a JS file `strapi-server.js` in the strapi folder `/src/extensions/user-p
 Add the following content to the file:
 
 ```jsx
-//Image Uploader
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0]; // store the selected file in a variable
-
-    if (selectedFile.size > 1024 * 1024) {
-      // check the size of the selected file
-      setAlert("The image must not be larger than 1 MB.", "danger");
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 5000);
-      return;
+module.exports = (plugin) => {
+  plugin.controllers.user.updateMe = async (ctx) => {
+    if (!ctx.state.user || !ctx.state.user.id) {
+      return (ctx.response.status = 401);
     }
-
-    setFile(selectedFile); // set the selected file as the state variable
+    await strapi
+      .query("plugin::users-permissions.user")
+      .update({
+        where: { id: ctx.state.user.id },
+        data: ctx.request.body
+      })
+      .then((res) => {
+        ctx.response.status = 200;
+      });
   };
 
-  const handleUploadAvatar = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("files", file);
-      formData.append("refId", userId);
-      formData.append("ref", "plugin::users-permissions.user");
-      formData.append("field", "Image");
+  plugin.routes["content-api"].routes.push({
+    method: "PUT",
+    path: "/user/me",
+    handler: "user.updateMe",
+    config: {
+      prefix: "",
+      polices: [],
+    },
+  });
+  return plugin;
+};
 
-      const config = {
-        method: "post",
-        url: 'http://example.com/api/upload',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          "Content-Type": "multipart/form-data",
-        },
-        data: formData,
-      };
-
-      const response = await axios(config);
-      const fileId = response.data[0].id;
-
-      const updatedUser = await axios.put(
-        'http://example.com/api/user/me',
-        { Avatar: fileId },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`,
-          },
-        }
-      );
-
-      setAlert("Updated user-avatar", "success");
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-        window.location.reload(false);
-      }, 5000);
-    } catch (error) {
-      setAlert("Error uploading the image", "danger");
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-      }, 5000);
-    }
-  };
 ```
 
 ## 🧮 Populate
